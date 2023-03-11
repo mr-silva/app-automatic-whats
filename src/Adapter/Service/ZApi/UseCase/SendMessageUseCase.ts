@@ -1,3 +1,4 @@
+import { InvalidData } from '../../../../../framework'
 import { ITaskItemRawDataInterface } from '../../../../Domain'
 import { MessageProvider } from '../Provider'
 
@@ -8,6 +9,8 @@ export class SendMessageUseCase {
     campaignMessage: string,
     contactPayload: ITaskItemRawDataInterface
   ): Promise<void> {
+    if (!contactPayload.numero) throw new InvalidData('Task Item does not have number.')
+
     const messageVariablesToUse = [...campaignMessage.matchAll(/{{(.*?)}}/gm)].flatMap(
       variable => variable[1]
     )

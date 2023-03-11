@@ -6,6 +6,7 @@ export class TaskItemUseCaseFactory {
 
   public buildProcessUseCase(): TaskItemProcessUseCase {
     return new TaskItemProcessUseCase(
+      this.serviceFactory.buildDomain().buildAccountService(),
       this.serviceFactory.buildDomain().buildTaskService(),
       this.serviceFactory.buildApplication().buildZApiService()
     )

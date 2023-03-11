@@ -1,4 +1,4 @@
-import { ITaskItemRawDataInterface } from '../../../../Domain'
+import { ITaskItemRawDataInterface, TaskTypeEnum } from '../../../../Domain'
 
 export interface ITaskCreatePayloadDto {
   items: {
@@ -6,5 +6,7 @@ export interface ITaskCreatePayloadDto {
     rawData: ITaskItemRawDataInterface
   }[]
   message: string
+  type: TaskTypeEnum
   processItemInterval?: number
+  saveCampaign?: boolean
 }

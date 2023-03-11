@@ -12,6 +12,12 @@ export class ZApiService implements IZApiAppService {
     return this.providerFactory
   }
 
+  public setProfileData(instance: string, token: string): this {
+    this.getProviderFactory().setInstance(instance).setToken(token)
+
+    return this
+  }
+
   public async sendMessage(
     campaignMessage: string,
     contactPayload: ITaskItemRawDataInterface

@@ -16,7 +16,7 @@ export class TaskDataMapperMediator extends EntityDataMapperContract<Task, TaskE
     const task = this.taskDataMapper.toDomain(entity)
 
     if (entity.items)
-      this.taskItemDataMapper.toDomainMany(entity.items).forEach(item => task.addTaskItem(item))
+      this.taskItemDataMapper.toDomainMany(entity.items).forEach(item => task.addItem(item))
 
     return task
   }
@@ -24,10 +24,8 @@ export class TaskDataMapperMediator extends EntityDataMapperContract<Task, TaskE
   toDaoEntity(domain: Task): TaskEntity {
     const task = this.taskDataMapper.toDaoEntity(domain)
 
-    if (domain.getTaskItems()) {
-      this.taskItemDataMapper
-        .toDaoEntityMany(domain.getTaskItems())
-        .forEach(item => task.addItem(item))
+    if (domain.getItems()) {
+      this.taskItemDataMapper.toDaoEntityMany(domain.getItems()).forEach(item => task.addItem(item))
     }
 
     return task

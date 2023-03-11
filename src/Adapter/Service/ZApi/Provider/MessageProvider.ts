@@ -6,9 +6,7 @@ export class MessageProvider extends BaseProvider {
     try {
       const response = (
         await this.getRequest()
-          .withEndpoint(
-            `/instances/${process.env.ZAPI_INSTANCE}/token/${process.env.ZAPI_TOKEN}/send-text`
-          )
+          .withEndpoint(`/instances/${this.instance}/token/${this.token}/send-text`)
           .withPayload({
             phone,
             message

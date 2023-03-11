@@ -1,15 +1,13 @@
-import { InvalidUserAuthenticationData } from '../../../../framework'
 import { AccountGetOneByIdUseCase, AccountUpdateConfigsUseCase } from '../../../Application'
 import { ServiceFactory } from '../ServiceFactory'
+import { BaseUseCaseFactory } from './BaseUseCaseFactory'
 
-export class AccountUseCaseFactory {
-  constructor(private serviceFactory: ServiceFactory, private accountId?: string) {}
-
-  private getRequiredAccountId(): string {
-    const accountId = this.accountId
-    if (!accountId) throw new InvalidUserAuthenticationData('Account id is missing')
-
-    return accountId
+export class AccountUseCaseFactory extends BaseUseCaseFactory {
+  constructor(
+    protected readonly accountId: string | undefined,
+    private readonly serviceFactory: ServiceFactory
+  ) {
+    super(accountId)
   }
 
   public buildGetOneById(): AccountGetOneByIdUseCase {

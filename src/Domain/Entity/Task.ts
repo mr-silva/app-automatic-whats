@@ -1,28 +1,31 @@
-import { TaskStatusEnum } from '../Enum'
+import { TaskStatusEnum, TaskTypeEnum } from '../Enum'
 import { TaskSettings } from '../ValueObject'
 import { Base } from './Base'
 import { TaskItem } from './TaskItem'
 
 export class Task extends Base {
-  private items: TaskItem[] | undefined
+  private items: TaskItem[]
 
   constructor(
+    private accountId: string,
     private status: TaskStatusEnum,
     private settings: TaskSettings,
+    private type: TaskTypeEnum,
     id?: string,
     createdAt?: Date,
     updatedAt?: Date
   ) {
     super(id, createdAt, updatedAt)
+
+    this.items = []
   }
 
-  public addTaskItem(taskItem: TaskItem): this {
-    if (!this.items) this.items = []
+  public addItem(taskItem: TaskItem): this {
     this.items.push(taskItem)
     return this
   }
 
-  public setTaskItems(taskItems: TaskItem[]): this {
+  public setItems(taskItems: TaskItem[]): this {
     this.items = taskItems
     return this
   }
@@ -41,11 +44,19 @@ export class Task extends Base {
     return this.status
   }
 
-  public getTaskItems(): TaskItem[] {
+  public getItems(): TaskItem[] {
     return this.items || []
   }
 
   public getSettings(): TaskSettings {
     return this.settings
+  }
+
+  public getAccountId(): string {
+    return this.accountId
+  }
+
+  public getType(): TaskTypeEnum {
+    return this.type
   }
 }

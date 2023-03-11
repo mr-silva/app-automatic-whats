@@ -1,3 +1,4 @@
 export * from './Task'
 export * from './TaskItem'
 export * from './Account'
+export * from './Campaign'

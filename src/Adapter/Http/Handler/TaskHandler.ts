@@ -5,7 +5,7 @@ import { ResponseEntity, HttpStatusEnum } from '../../../../framework'
 export class TaskHandler {
   public async create(request: Request, response: Response, next: NextFunction) {
     try {
-      await new Factory()
+      await new Factory(request.header('X-Account'))
         .buildUseCaseFactory()
         .buildTask()
         .buildCreateUseCase()

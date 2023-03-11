@@ -4,13 +4,13 @@ import { AccountUseCaseFactory, TaskItemUseCaseFactory, TaskUseCaseFactory } fro
 
 export class UseCaseFactory {
   constructor(
+    private readonly accountId: string | undefined,
     private readonly serviceFactory: ServiceFactory,
-    private readonly eventProducerFactory: EventProducerFactory,
-    private readonly accountId?: string
+    private readonly eventProducerFactory: EventProducerFactory
   ) {}
 
   public buildTask(): TaskUseCaseFactory {
-    return new TaskUseCaseFactory(this.serviceFactory, this.eventProducerFactory)
+    return new TaskUseCaseFactory(this.accountId, this.serviceFactory, this.eventProducerFactory)
   }
 
   public buildTaskItem(): TaskItemUseCaseFactory {
@@ -18,6 +18,6 @@ export class UseCaseFactory {
   }
 
   public buildAccount(): AccountUseCaseFactory {
-    return new AccountUseCaseFactory(this.serviceFactory, this.accountId)
+    return new AccountUseCaseFactory(this.accountId, this.serviceFactory)
   }
 }

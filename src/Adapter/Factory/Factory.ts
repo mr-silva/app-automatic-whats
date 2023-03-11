@@ -26,9 +26,9 @@ export class Factory {
 
   public buildUseCaseFactory(): UseCaseFactory {
     return new UseCaseFactory(
+      this.accountId,
       this.buildServiceFactory(),
-      this.buildEventProducerFactory(),
-      this.accountId
+      this.buildEventProducerFactory()
     )
   }
 }

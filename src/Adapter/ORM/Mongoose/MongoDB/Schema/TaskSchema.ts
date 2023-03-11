@@ -1,5 +1,5 @@
 import { Schema } from 'mongoose'
-import { TaskStatusEnum } from '../../../../../Domain'
+import { TaskStatusEnum, TaskTypeEnum } from '../../../../../Domain'
 import { TaskItemSchema } from './TaskItemSchema'
 
 const TaskSettingsSchema = new Schema(
@@ -18,12 +18,20 @@ export const TaskSchema = new Schema(
       type: String,
       required: true
     },
+    accountId: {
+      type: String,
+      required: true
+    },
     status: {
       type: Object.keys(TaskStatusEnum),
       required: true
     },
     settings: TaskSettingsSchema,
-    items: [TaskItemSchema]
+    items: [TaskItemSchema],
+    type: {
+      type: Object.keys(TaskTypeEnum),
+      required: true
+    }
   },
   {
     collection: 'task',
