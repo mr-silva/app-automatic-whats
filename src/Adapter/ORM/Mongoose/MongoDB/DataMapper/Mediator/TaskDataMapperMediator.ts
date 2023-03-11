@@ -1,0 +1,35 @@
+import { EntityDataMapperContract } from '../../../../../../../framework'
+import { Task, TaskSettings } from '../../../../../../Domain'
+import { TaskEntity } from '../../Entity'
+import { TaskDataMapper } from '../TaskDataMapper'
+import { TaskItemDataMapper } from '../TaskItemDataMapper'
+
+export class TaskDataMapperMediator extends EntityDataMapperContract<Task, TaskEntity> {
+  constructor(
+    private readonly taskDataMapper: TaskDataMapper,
+    private readonly taskItemDataMapper: TaskItemDataMapper
+  ) {
+    super()
+  }
+
+  toDomain(entity: TaskEntity): Task {
+    const task = this.taskDataMapper.toDomain(entity)
+
+    if (entity.items)
+      this.taskItemDataMapper.toDomainMany(entity.items).forEach(item => task.addTaskItem(item))
+
+    return task
+  }
+
+  toDaoEntity(domain: Task): TaskEntity {
+    const task = this.taskDataMapper.toDaoEntity(domain)
+
+    if (domain.getTaskItems()) {
+      this.taskItemDataMapper
+        .toDaoEntityMany(domain.getTaskItems())
+        .forEach(item => task.addItem(item))
+    }
+
+    return task
+  }
+}
