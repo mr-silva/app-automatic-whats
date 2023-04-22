@@ -66,4 +66,20 @@ export class AccountHandler {
       next(error)
     }
   }
+
+  public async whatsDisconnect(request: Request, response: Response, next: NextFunction) {
+    try {
+      const result = await Factory.getInstance()
+        .setContext(request.context.toApplication())
+        .buildUseCaseFactory()
+        .buildAccount()
+        .buildWhatsDisconnect()
+        .execute()
+
+      return new ResponseEntity(response).noContent()
+    } catch (error) {
+      console.error(error)
+      next(error)
+    }
+  }
 }

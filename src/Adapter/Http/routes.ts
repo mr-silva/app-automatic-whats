@@ -19,6 +19,7 @@ router
   .patch(accountHandler.updateConfigs.bind(accountHandler))
 
 router.route('/whatsapp/status').get(accountHandler.whatsConnectionStatus.bind(accountHandler))
+router.route('/whatsapp/disconnect').post(accountHandler.whatsDisconnect.bind(accountHandler))
 
 router.route('/task').post(taskHandler.create.bind(taskHandler))
 

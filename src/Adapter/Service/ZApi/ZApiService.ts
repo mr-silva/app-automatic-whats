@@ -1,7 +1,7 @@
 import { IZApiAppService } from '#application'
 import { IInstanceStatusResponseDto, IMessageCreateDto } from './Entity'
 import { ProviderFactory } from './Factory'
-import { InstanceStatusUseCase, SendMessageUseCase } from './UseCase'
+import { InstanceStatusUseCase, SendMessageUseCase, InstanceDisconnectUseCase } from './UseCase'
 
 export class ZApiService implements IZApiAppService {
   private providerFactory: ProviderFactory | undefined
@@ -35,5 +35,13 @@ export class ZApiService implements IZApiAppService {
     )
 
     return await instanceStatusUseCase.execute()
+  }
+
+  public async disconnect(): Promise<void> {
+    const instanceDisconnectUseCase = new InstanceDisconnectUseCase(
+      this.getProviderFactory().buildInstanceProvider()
+    )
+
+    return await instanceDisconnectUseCase.execute()
   }
 }

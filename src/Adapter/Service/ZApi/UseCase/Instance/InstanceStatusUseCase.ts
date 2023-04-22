@@ -5,21 +5,29 @@ export class InstanceStatusUseCase {
   constructor(private readonly instanceProvider: InstanceProvider) {}
 
   public async execute(): Promise<IInstanceStatusResponseDto> {
-    try {
-      const { connected } = (await this.instanceProvider.getStatus()).getBody()
+    const { connected } = (await this.instanceProvider.getStatus()).getBody()
+    let qrCodeImage: string | null = null
 
+    if (!connected) {
+      const { value } = (await this.instanceProvider.getQRCodeImage()).getBody()
+
+      qrCodeImage = value
+    }
+    try {
       const { phone, imgUrl } = (await this.instanceProvider.getDevice()).getBody()
 
       return {
         connected,
         imageUrl: imgUrl,
-        number: phone
+        number: phone,
+        qrCodeImage
       }
-    } catch {
+    } catch (error) {
       return {
-        connected: false,
+        connected,
         imageUrl: null,
-        number: null
+        number: null,
+        qrCodeImage
       }
     }
   }
