@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express'
 import { Factory } from '#factory'
-import { ResponseEntity, HttpStatusEnum } from '#framework'
+import { ResponseEntity } from '#framework'
 import { TaskValidator } from '../Validator'
 
 export class TaskHandler {
@@ -15,7 +15,7 @@ export class TaskHandler {
         .buildCreateUseCase()
         .execute(request.body)
 
-      return new ResponseEntity(response, {}, HttpStatusEnum.NO_CONTENT).build()
+      return new ResponseEntity(response).noContent()
     } catch (error) {
       console.error(error)
       next(error)

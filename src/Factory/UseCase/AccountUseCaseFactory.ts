@@ -1,5 +1,9 @@
 import { ApplicationContext } from '#framework'
-import { AccountGetOneByIdUseCase, AccountUpdateConfigsUseCase } from '#application'
+import {
+  AccountAuthenticateUseCase,
+  AccountGetOneByIdUseCase,
+  AccountUpdateConfigsUseCase
+} from '#application'
 import { ServiceFactory } from '../ServiceFactory'
 import { BaseUseCaseFactory } from './BaseUseCaseFactory'
 
@@ -23,5 +27,9 @@ export class AccountUseCaseFactory extends BaseUseCaseFactory {
       this.getRequiredAccountId(),
       this.serviceFactory.buildDomain().buildAccountService()
     )
+  }
+
+  public buildAuthenticate(): AccountAuthenticateUseCase {
+    return new AccountAuthenticateUseCase(this.serviceFactory.buildDomain().buildAccountService())
   }
 }

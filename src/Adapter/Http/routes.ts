@@ -4,10 +4,12 @@ import { TaskHandler, AccountHandler } from './Handler'
 
 const router = Router()
 
-const contextMiddleWare = new MakeContextMiddleware(new MakeRequestContextService())
-
 const taskHandler = new TaskHandler()
 const accountHandler = new AccountHandler()
+
+router.route('/authenticate').post(accountHandler.authenticate.bind(accountHandler))
+
+const contextMiddleWare = new MakeContextMiddleware(new MakeRequestContextService())
 
 router.use(contextMiddleWare.handle)
 

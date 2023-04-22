@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from 'express'
 import { Factory } from '#factory'
-import { ResponseEntity, HttpStatusEnum } from '#framework'
+import { ResponseEntity } from '#framework'
+import { AccountView } from '../View'
 
 export class AccountHandler {
   public async getOneById(request: Request, response: Response, next: NextFunction) {
@@ -12,7 +13,7 @@ export class AccountHandler {
         .buildGetOneById()
         .execute()
 
-      return new ResponseEntity(response, result, HttpStatusEnum.OK).build()
+      return new ResponseEntity(response).ok(new AccountView().render(result))
     } catch (error) {
       console.error(error)
       next(error)
@@ -28,7 +29,22 @@ export class AccountHandler {
         .buildUpdateConfigs()
         .execute(request.body)
 
-      return new ResponseEntity(response, result, HttpStatusEnum.OK).build()
+      return new ResponseEntity(response).ok(new AccountView().render(result))
+    } catch (error) {
+      console.error(error)
+      next(error)
+    }
+  }
+
+  public async authenticate(request: Request, response: Response, next: NextFunction) {
+    try {
+      const result = await Factory.getInstance()
+        .buildUseCaseFactory()
+        .buildAccount()
+        .buildAuthenticate()
+        .execute(request.body)
+
+      return new ResponseEntity<{ token: string }>(response).ok({ token: result.getToken()! })
     } catch (error) {
       console.error(error)
       next(error)

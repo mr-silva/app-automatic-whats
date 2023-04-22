@@ -47,4 +47,10 @@ export class ResponseEntity<TBody> {
 
     return this.build()
   }
+
+  public noContent() {
+    this.status = HttpStatusEnum.NO_CONTENT
+
+    return this.build()
+  }
 }

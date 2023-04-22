@@ -16,6 +16,18 @@ export const AccountSchema = new Schema(
       type: String,
       required: true
     },
+    name: {
+      type: String,
+      required: true
+    },
+    email: {
+      type: String,
+      required: true
+    },
+    password: {
+      type: String,
+      required: true
+    },
     configs: ConfigsSchema
   },
   {
