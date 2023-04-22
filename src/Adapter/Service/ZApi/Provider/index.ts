@@ -1,1 +1,2 @@
-export * from './MessageProvider'
+export * from './Message'
+export * from './Instance'

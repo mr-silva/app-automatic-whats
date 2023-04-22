@@ -1,6 +1,7 @@
 import { InvalidDataException } from '#framework'
 import {
   AccountService,
+  AccountWithoutZApiInstanceOrTokenException,
   Task,
   TaskItem,
   TaskItemStatusEnum,
@@ -23,7 +24,7 @@ export class TaskCreateUseCase {
     const account = await this.accountService.getOneById(this.accountId)
 
     if (!account.getConfigs().getZApiInstance() || !account.getConfigs().getZApiToken())
-      throw new InvalidDataException('Account does not have [Z-API] instance or token defined.')
+      throw new AccountWithoutZApiInstanceOrTokenException()
 
     const taskItems = dto.items
       .filter(item => item.row !== 0)
@@ -38,9 +39,9 @@ export class TaskCreateUseCase {
 
     await this.taskService.save(task)
 
-    // this.taskEventProducer.taskCreated({
-    //   payload: { taskId: task.getId(), accountId: account.getId() }
-    // })
+    this.taskEventProducer.taskCreated({
+      payload: { taskId: task.getId(), accountId: account.getId() }
+    })
 
     // if (dto.hasOwnProperty('saveCampaign') && dto.saveCampaign)
     //   await this.campaignService.save(new Campaign(account.getId()).setTaskItems(task.getItems()))

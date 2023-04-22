@@ -2,7 +2,8 @@ import { ApplicationContext } from '#framework'
 import {
   AccountAuthenticateUseCase,
   AccountGetOneByIdUseCase,
-  AccountUpdateConfigsUseCase
+  AccountUpdateConfigsUseCase,
+  AccountWhatsConnectionStatusUseCase
 } from '#application'
 import { ServiceFactory } from '../ServiceFactory'
 import { BaseUseCaseFactory } from './BaseUseCaseFactory'
@@ -31,5 +32,13 @@ export class AccountUseCaseFactory extends BaseUseCaseFactory {
 
   public buildAuthenticate(): AccountAuthenticateUseCase {
     return new AccountAuthenticateUseCase(this.serviceFactory.buildDomain().buildAccountService())
+  }
+
+  public buildWhatsConnectionStatus(): AccountWhatsConnectionStatusUseCase {
+    return new AccountWhatsConnectionStatusUseCase(
+      this.getRequiredAccountId(),
+      this.serviceFactory.buildDomain().buildAccountService(),
+      this.serviceFactory.buildApplication().buildZApiService()
+    )
   }
 }

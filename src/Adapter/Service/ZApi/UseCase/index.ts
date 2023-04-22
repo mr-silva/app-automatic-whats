@@ -1,1 +1,2 @@
-export * from './SendMessageUseCase'
+export * from './Message'
+export * from './Instance'

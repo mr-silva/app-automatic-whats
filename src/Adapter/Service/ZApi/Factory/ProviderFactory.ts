@@ -1,5 +1,5 @@
 import { AxiosRequest } from '#framework'
-import { MessageProvider } from '../Provider'
+import { InstanceProvider, MessageProvider } from '../Provider'
 
 export class ProviderFactory {
   private instance: string | undefined
@@ -21,5 +21,9 @@ export class ProviderFactory {
 
   public buildMessageProvider() {
     return new MessageProvider(this.buildAxiosRequest(), this.instance, this.token)
+  }
+
+  public buildInstanceProvider() {
+    return new InstanceProvider(this.buildAxiosRequest(), this.instance, this.token)
   }
 }

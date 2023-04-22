@@ -1,6 +1,6 @@
 import { InvalidDataException } from '#framework'
-import { MessageProvider } from '../Provider'
-import { IMessageCreateDto } from '../Entity'
+import { MessageProvider } from '../../Provider'
+import { IMessageCreateDto } from '../../Entity'
 
 export class SendMessageUseCase {
   constructor(private readonly messageProvider: MessageProvider) {}

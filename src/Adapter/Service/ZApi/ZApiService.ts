@@ -1,7 +1,7 @@
 import { IZApiAppService } from '#application'
-import { IMessageCreateDto } from './Entity'
+import { IInstanceStatusResponseDto, IMessageCreateDto } from './Entity'
 import { ProviderFactory } from './Factory'
-import { SendMessageUseCase } from './UseCase'
+import { InstanceStatusUseCase, SendMessageUseCase } from './UseCase'
 
 export class ZApiService implements IZApiAppService {
   private providerFactory: ProviderFactory | undefined
@@ -27,5 +27,13 @@ export class ZApiService implements IZApiAppService {
     )
 
     await sendMessageUseCase.execute(campaignMessage, contactPayload)
+  }
+
+  public async getStatus(): Promise<IInstanceStatusResponseDto> {
+    const instanceStatusUseCase = new InstanceStatusUseCase(
+      this.getProviderFactory().buildInstanceProvider()
+    )
+
+    return await instanceStatusUseCase.execute()
   }
 }
