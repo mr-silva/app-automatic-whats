@@ -1,4 +1,4 @@
-import { AccountService, TaskService, TaskStatusEnum } from '../../../../Domain'
+import { AccountService, TaskService, TaskStatusEnum } from '#domain'
 import { ITaskItemProducer } from '../../../Event'
 import { ITaskProcessPayloadDto } from './ITaskProcessPayloadDto'
 
@@ -16,7 +16,7 @@ export class TaskProcessUseCase {
     await this.taskService.save(task)
 
     task.getItems().forEach((item, i) => {
-      const interval = task.getSettings().getProcessItemInterval() * i + 1
+      const interval = task.getSettings().getProcessItemInterval() * i * 1000
 
       setTimeout(() => this.processItem(item.getId(), task.getId(), dto.accountId), interval)
     })

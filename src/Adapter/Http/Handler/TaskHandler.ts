@@ -1,11 +1,15 @@
 import { NextFunction, Request, Response } from 'express'
-import { Factory } from '../../Factory'
-import { ResponseEntity, HttpStatusEnum } from '../../../../framework'
+import { Factory } from '#factory'
+import { ResponseEntity, HttpStatusEnum } from '#framework'
+import { TaskValidator } from '../Validator'
 
 export class TaskHandler {
   public async create(request: Request, response: Response, next: NextFunction) {
     try {
-      await new Factory(request.header('X-Account'))
+      await new TaskValidator().validateCreatePayload(request.body)
+
+      await Factory.getInstance()
+        .setContext(request.context.toApplication())
         .buildUseCaseFactory()
         .buildTask()
         .buildCreateUseCase()

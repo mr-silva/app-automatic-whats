@@ -1,4 +1,4 @@
-import { IConsumerMessage } from '../../../../framework'
+import { IConsumerMessage } from '#framework'
 import { ITaskProcessPayloadDto } from '../../UseCase'
 
 export interface ITaskProducer {

@@ -1,5 +1,5 @@
 import { Schema } from 'mongoose'
-import { TaskItemStatusEnum } from '../../../../../Domain'
+import { TaskItemStatusEnum } from '#domain'
 
 export const TaskItemSchema = new Schema(
   {

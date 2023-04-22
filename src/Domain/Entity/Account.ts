@@ -1,4 +1,4 @@
-import { Configs } from '../ValueObject/Configs'
+import { Configs } from '../ValueObject'
 import { Base } from './Base'
 
 export class Account extends Base {

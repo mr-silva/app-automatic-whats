@@ -1,4 +1,4 @@
-import { IRepository } from '../../../../framework'
-import { Task, TaskItem } from '../../../Domain'
+import { IRepository } from '#framework'
+import { Task } from '../../Entity'
 
 export interface ITaskRepository extends IRepository<Task> {}

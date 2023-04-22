@@ -1,21 +1,16 @@
-import { InvalidData } from '../../../../../framework'
-import { ITaskItemRawDataInterface } from '../../../../Domain'
+import { InvalidDataException } from '#framework'
 import { MessageProvider } from '../Provider'
+import { IMessageCreateDto } from '../Entity'
 
 export class SendMessageUseCase {
   constructor(private readonly messageProvider: MessageProvider) {}
 
-  public async execute(
-    campaignMessage: string,
-    contactPayload: ITaskItemRawDataInterface
-  ): Promise<void> {
-    if (!contactPayload.numero) throw new InvalidData('Task Item does not have number.')
+  public async execute(campaignMessage: string, contactPayload: IMessageCreateDto): Promise<void> {
+    if (!contactPayload.numero) throw new InvalidDataException('Task Item does not have number.')
 
     const messageVariablesToUse = [...campaignMessage.matchAll(/{{(.*?)}}/gm)].flatMap(
       variable => variable[1]
     )
-
-    console.log(campaignMessage)
 
     let message = campaignMessage
     for (const variable of messageVariablesToUse) {

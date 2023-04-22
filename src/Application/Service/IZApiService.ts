@@ -1,4 +1,4 @@
-import { ITaskItemRawDataInterface } from '../../Domain'
+import { ITaskItemRawDataInterface } from '#domain'
 
 export interface IZApiAppService {
   setProfileData(instance: string, token: string): this

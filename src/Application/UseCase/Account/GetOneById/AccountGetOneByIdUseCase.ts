@@ -1,5 +1,4 @@
-import { Account } from '../../../../Domain'
-import { AccountService } from '../../../../Domain/Service'
+import { Account, AccountService } from '#domain'
 
 export class AccountGetOneByIdUseCase {
   constructor(

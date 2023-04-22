@@ -1,6 +1,6 @@
 import cors from 'cors'
 import express from 'express'
-import { ErrorMiddleware } from '../../../framework'
+import { ErrorMiddleware } from '#framework'
 import { router } from './routes'
 
 const httpServer = express()

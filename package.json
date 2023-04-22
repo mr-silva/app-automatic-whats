@@ -2,7 +2,14 @@
   "name": "app-automatic-whats",
   "version": "0.0.3",
   "description": "Aplicativo de mensagens automáticas em lote via whatsapp.",
+  "author": "Maicon R. Silva <maiconrods@gmail.com>",
   "private": true,
+  "imports": {
+      "#framework": "./resources/framework/src/index.ts",
+      "#domain": "./src/Domain/index.ts",
+      "#application": "./src/Application/index.ts",
+      "#factory": "./src/Factory/index.ts"
+  },
   "scripts": {
     "start": "docker-compose up -d",
     "stop": "docker-compose stop",
@@ -11,8 +18,8 @@
     "build": "tsc",
     "api": "node dist/src/Application/api.js",
     "worker": "node dist/src/Application/eventWorker.js",
-    "dev:api": "tsnd --transpile-only --respawn --inspect=0.0.0.0:9229 src/Application/api.ts",
-    "dev:worker": "tsnd --transpile-only --respawn --inspect=0.0.0.0:9229 src/Application/eventWorker.ts"
+    "dev:api": "tsnd --transpile-only --respawn --inspect=0.0.0.0:9229 src/Adapter/Http/api.ts",
+    "dev:worker": "tsnd --transpile-only --respawn --inspect=0.0.0.0:9229 src/Adapter/Http/eventWorker.ts"
   },
   "dependencies": {
     "axios": "^1.1.3",
@@ -21,6 +28,7 @@
     "dotenv": "^16.0.0",
     "express": "^4.18.2",
     "joi": "^17.6.0",
+    "jsonwebtoken": "^9.0.0",
     "moment": "^2.29.4",
     "mongodb": "4.3.1",
     "mongoose": "^6.2.9",
@@ -34,6 +42,7 @@
     "@types/express": "^4.17.13",
     "@types/jest": "^28.1.6",
     "@types/joi": "^17.2.3",
+    "@types/jsonwebtoken": "^9.0.1",
     "@types/node": "^18.6.5",
     "@types/redis": "^2.8.31",
     "prettier": "^2.7.1",

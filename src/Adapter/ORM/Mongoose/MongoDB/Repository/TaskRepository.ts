@@ -1,10 +1,10 @@
+import { Connection } from 'mongoose'
 import {
-  DataNotFound,
+  DataNotFoundException,
   IEntityDataMapper,
   MongooseMongoDBRepositoryContract
-} from '../../../../../../framework'
-import { Connection } from 'mongoose'
-import { ITaskRepository, Task } from '../../../../../Domain'
+} from '#framework'
+import { ITaskRepository, Task } from '#domain'
 import { TaskEntity } from '../Entity'
 import { TaskSchema } from '../Schema'
 
@@ -15,18 +15,20 @@ export class TaskRepository
   constructor(
     mongoDBConnection: Connection,
     dataMapper: IEntityDataMapper<Task, TaskEntity>,
-    dataNotFoundException: DataNotFound
+    dataNotFoundException: DataNotFoundException,
+    accountId: string | undefined
   ) {
     super(
       mongoDBConnection.model<TaskEntity>('TaskEntity', TaskSchema),
       dataMapper,
-      dataNotFoundException
+      dataNotFoundException,
+      accountId
     )
   }
 
   public async save(entity: Task): Promise<Task> {
     await this.model.updateOne(
-      { id: entity.getId() },
+      { id: entity.getId(), accountId: this.accountId },
       { $set: this.dataMapper.toDaoEntity(entity) },
       { upsert: true }
     )
@@ -35,6 +37,6 @@ export class TaskRepository
   }
 
   protected hasAccountIdColumn(): boolean {
-    return false
+    return true
   }
 }

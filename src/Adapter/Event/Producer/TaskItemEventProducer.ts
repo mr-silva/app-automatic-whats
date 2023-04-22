@@ -1,5 +1,5 @@
-import { EventProducerContract, IConsumerMessage } from '../../../../framework'
-import { ITaskItemProcessPayloadDto, ITaskItemProducer } from '../../../Application'
+import { EventProducerContract, IConsumerMessage } from '#framework'
+import { ITaskItemProcessPayloadDto, ITaskItemProducer } from '#application'
 
 export class TaskItemEventProducer extends EventProducerContract implements ITaskItemProducer {
   public async processItem(message: IConsumerMessage<ITaskItemProcessPayloadDto>): Promise<void> {

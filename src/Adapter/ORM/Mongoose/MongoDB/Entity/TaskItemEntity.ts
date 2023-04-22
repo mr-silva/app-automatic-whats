@@ -1,4 +1,4 @@
-import { ITaskItemRawDataInterface, TaskItemStatusEnum } from '../../../../../Domain'
+import { ITaskItemRawDataInterface, TaskItemStatusEnum } from '#domain'
 
 export class TaskItemEntity {
   constructor(

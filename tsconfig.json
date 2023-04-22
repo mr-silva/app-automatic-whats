@@ -14,9 +14,15 @@
     "noImplicitAny": true,
     "skipLibCheck": true,
     "typeRoots": [
-      "./framework/@types",
+      "./resources/framework/src/@types",
       "./node_modules/@types"
-    ]
+    ],
+    "paths": {
+      "#framework": ["./resources/framework/src/index.ts"],
+      "#domain": ["./src/Domain/index.ts"],
+      "#application": ["./src/Application/index.ts"],
+      "#factory": ["./src/Factory/index.ts"]
+    }
   },
   "include": ["src"],
   "exclude": ["node_modules"]

@@ -1,5 +1,5 @@
-import { EntityDataMapperContract } from '../../../../../../framework'
-import { TaskItem } from '../../../../../Domain'
+import { EntityDataMapperContract } from '#framework'
+import { TaskItem } from '#domain'
 import { TaskItemEntity } from '../Entity'
 
 export class TaskItemDataMapper extends EntityDataMapperContract<TaskItem, TaskItemEntity> {

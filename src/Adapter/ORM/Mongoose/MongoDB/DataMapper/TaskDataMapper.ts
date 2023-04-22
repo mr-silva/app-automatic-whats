@@ -1,5 +1,5 @@
-import { EntityDataMapperContract } from '../../../../../../framework'
-import { Task, TaskSettings as DomainTaskSettings } from '../../../../../Domain'
+import { EntityDataMapperContract } from '#framework'
+import { Task, TaskSettings as DomainTaskSettings } from '#domain'
 import { TaskEntity } from '../Entity'
 import { TaskSettings } from '../ValueObject'
 

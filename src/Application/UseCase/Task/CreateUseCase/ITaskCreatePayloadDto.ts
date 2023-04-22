@@ -1,4 +1,4 @@
-import { ITaskItemRawDataInterface, TaskTypeEnum } from '../../../../Domain'
+import { ITaskItemRawDataInterface, TaskTypeEnum } from '#domain'
 
 export interface ITaskCreatePayloadDto {
   items: {

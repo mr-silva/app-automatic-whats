@@ -1,11 +1,12 @@
 import { NextFunction, Request, Response } from 'express'
-import { Factory } from '../../Factory'
-import { ResponseEntity, HttpStatusEnum } from '../../../../framework'
+import { Factory } from '#factory'
+import { ResponseEntity, HttpStatusEnum } from '#framework'
 
 export class AccountHandler {
   public async getOneById(request: Request, response: Response, next: NextFunction) {
     try {
-      const result = await new Factory(request.header('X-Account'))
+      const result = await Factory.getInstance()
+        .setContext(request.context.toApplication())
         .buildUseCaseFactory()
         .buildAccount()
         .buildGetOneById()
@@ -20,7 +21,8 @@ export class AccountHandler {
 
   public async updateConfigs(request: Request, response: Response, next: NextFunction) {
     try {
-      const result = await new Factory(request.header('X-Account'))
+      const result = await Factory.getInstance()
+        .setContext(request.context.toApplication())
         .buildUseCaseFactory()
         .buildAccount()
         .buildUpdateConfigs()

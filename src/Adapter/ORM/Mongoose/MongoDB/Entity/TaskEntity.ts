@@ -1,4 +1,4 @@
-import { TaskStatusEnum, TaskTypeEnum } from '../../../../../Domain'
+import { TaskStatusEnum, TaskTypeEnum } from '#domain'
 import { TaskSettings } from '../ValueObject'
 import { TaskItemEntity } from './TaskItemEntity'
 

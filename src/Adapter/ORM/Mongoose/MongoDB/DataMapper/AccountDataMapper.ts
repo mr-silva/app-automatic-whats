@@ -1,5 +1,5 @@
-import { EntityDataMapperContract } from '../../../../../../framework'
-import { Account, Configs as DomainConfigs } from '../../../../../Domain'
+import { EntityDataMapperContract } from '#framework'
+import { Account, Configs as DomainConfigs } from '#domain'
 import { AccountEntity } from '../Entity'
 import { Configs } from '../ValueObject'
 

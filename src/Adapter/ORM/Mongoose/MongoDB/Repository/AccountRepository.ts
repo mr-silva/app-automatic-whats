@@ -1,10 +1,10 @@
 import {
-  DataNotFound,
+  DataNotFoundException,
   IEntityDataMapper,
   MongooseMongoDBRepositoryContract
-} from '../../../../../../framework'
+} from '#framework'
 import { Connection } from 'mongoose'
-import { Account, IAccountRepository } from '../../../../../Domain'
+import { Account, IAccountRepository } from '#domain'
 import { AccountEntity } from '../Entity'
 import { AccountSchema } from '../Schema'
 
@@ -15,7 +15,7 @@ export class AccountRepository
   constructor(
     mongoDBConnection: Connection,
     dataMapper: IEntityDataMapper<Account, AccountEntity>,
-    dataNotFoundException: DataNotFound
+    dataNotFoundException: DataNotFoundException
   ) {
     super(
       mongoDBConnection.model<AccountEntity>('AccountEntity', AccountSchema),

@@ -5,6 +5,8 @@ declare global {
     interface ProcessEnv {
       // App
       PORT: string
+      APP_SECRET: string
+      JWT_SECRET: string
 
       // REDIS
       REDIS_HOST: string
@@ -19,8 +21,6 @@ declare global {
 
       // ZAPI
       ZAPI_BASE_URL: string
-      ZAPI_INSTANCE: string
-      ZAPI_TOKEN: string
     }
   }
 }

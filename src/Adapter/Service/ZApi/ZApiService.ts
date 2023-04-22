@@ -1,5 +1,5 @@
-import { IZApiAppService } from '../../../Application'
-import { ITaskItemRawDataInterface } from '../../../Domain'
+import { IZApiAppService } from '#application'
+import { IMessageCreateDto } from './Entity'
 import { ProviderFactory } from './Factory'
 import { SendMessageUseCase } from './UseCase'
 
@@ -20,7 +20,7 @@ export class ZApiService implements IZApiAppService {
 
   public async sendMessage(
     campaignMessage: string,
-    contactPayload: ITaskItemRawDataInterface
+    contactPayload: IMessageCreateDto
   ): Promise<void> {
     const sendMessageUseCase = new SendMessageUseCase(
       this.getProviderFactory().buildMessageProvider()

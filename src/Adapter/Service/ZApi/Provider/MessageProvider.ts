@@ -1,4 +1,4 @@
-import { HttpMethodEnum, InvalidData } from '../../../../../framework'
+import { HttpMethodEnum, InvalidDataException } from '#framework'
 import { BaseProvider } from './BaseProvider'
 
 export class MessageProvider extends BaseProvider {
@@ -6,8 +6,8 @@ export class MessageProvider extends BaseProvider {
     try {
       const response = (
         await this.getRequest()
-          .withEndpoint(`/instances/${this.instance}/token/${this.token}/send-text`)
-          .withPayload({
+          .addSegment(`send-text`)
+          .setPayload({
             phone,
             message
           })
@@ -18,7 +18,7 @@ export class MessageProvider extends BaseProvider {
     } catch (e) {
       console.error(e)
 
-      throw new InvalidData('Could not create message.')
+      throw new InvalidDataException('Could not create message.')
     }
   }
 }

@@ -1,3 +1,4 @@
+import { Factory } from '#factory'
 import { MongooseMongoDBDatabase } from '../ORM/Mongoose'
 import httpServer from './app'
 
@@ -13,6 +14,8 @@ function start() {
 
     try {
       await mongoDatabase.validate()
+
+      Factory.getInstance()
     } catch (err) {
       console.error(err)
       process.exit(1)

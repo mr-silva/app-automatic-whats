@@ -1,4 +1,4 @@
-import { AxiosRequest } from '../../../../../framework'
+import { AxiosRequest } from '#framework'
 import { MessageProvider } from '../Provider'
 
 export class ProviderFactory {

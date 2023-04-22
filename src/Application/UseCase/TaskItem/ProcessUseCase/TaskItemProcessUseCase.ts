@@ -1,4 +1,4 @@
-import { AccountService, TaskItemStatusEnum, TaskService } from '../../../../Domain'
+import { AccountService, TaskItemStatusEnum, TaskService } from '#domain'
 import { IZApiAppService } from '../../../Service'
 import { ITaskItemProcessPayloadDto } from './ITaskItemProcessPayloadDto'
 

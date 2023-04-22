@@ -1,4 +1,4 @@
-import { DataNotFound } from '../../../../framework'
+import { DataNotFoundException } from '#framework'
 import { Account } from '../../Entity'
 import { IAccountRepository } from '../../Repository'
 import { Configs } from '../../ValueObject'
@@ -10,7 +10,7 @@ export class AccountService {
     try {
       return await this.accountRepository.getOneById(id)
     } catch (error) {
-      if (!(error instanceof DataNotFound)) throw error
+      if (!(error instanceof DataNotFoundException)) throw error
 
       return new Account(new Configs(), id)
     }

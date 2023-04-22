@@ -1,44 +1,44 @@
 // ####### MESSAGE SEND WITH VARIABLES #######
 
-const rawMessage =
-  'Esta e uma mensagem de texto para o contato {{nome}} de {{cidade}}, no dia {{data}}.'
+// const rawMessage =
+//   'Esta e uma mensagem de texto para o contato {{nome}} de {{cidade}}, no dia {{data}}.'
 
-let messageVariablesToUse = [...rawMessage.matchAll(/{{(.*?)}}/gm)].flatMap(variable => variable[1])
+// let messageVariablesToUse = [...rawMessage.matchAll(/{{(.*?)}}/gm)].flatMap(variable => variable[1])
 
-const contactsPayload = [
-  {
-    phoneNumber: '5551984991442',
-    messageVariables: {
-      nome: 'Maicon',
-      cidade: 'Cachoeirinha',
-      data: '18/02/2023'
-    }
-  },
-  {
-    phoneNumber: '5551989377131',
-    messageVariables: {
-      nome: 'Vitoria',
-      cidade: 'Gravataí',
-      data: '18/02/2023'
-    }
-  }
-]
+// const contactsPayload = [
+//   {
+//     phoneNumber: '5551984991442',
+//     messageVariables: {
+//       nome: 'Maicon',
+//       cidade: 'Cachoeirinha',
+//       data: '18/02/2023'
+//     }
+//   },
+//   {
+//     phoneNumber: '5551989377131',
+//     messageVariables: {
+//       nome: 'Vitoria',
+//       cidade: 'Gravataí',
+//       data: '18/02/2023'
+//     }
+//   }
+// ]
 
-for (const payload of contactsPayload) {
-  let message = null
-  for (variable of messageVariablesToUse) {
-    if (!message) message = rawMessage
+// for (const payload of contactsPayload) {
+//   let message = null
+//   for (variable of messageVariablesToUse) {
+//     if (!message) message = rawMessage
 
-    const messageVariableKey = Object.keys(payload.messageVariables).find(key => key === variable)
+//     const messageVariableKey = Object.keys(payload.messageVariables).find(key => key === variable)
 
-    message = message.replace(
-      `{{${messageVariableKey}}}`,
-      payload.messageVariables[messageVariableKey]
-    )
-  }
+//     message = message.replace(
+//       `{{${messageVariableKey}}}`,
+//       payload.messageVariables[messageVariableKey]
+//     )
+//   }
 
-  console.log(message)
-}
+//   console.log(message)
+// }
 
 // ###### SET INTERVAL FUNCTION #######
 
@@ -87,3 +87,9 @@ for (const payload of contactsPayload) {
 
 //   setTimeout(() => processItem(item), interval)
 // })
+
+// ## STRING PARSE
+const rawData =
+  '{nome: Welinton, numero: 555192767016, email: welinton@gmail.com, valor: 30.23, data: 2022-10-19T00:06:28.000}'
+
+console.log(JSON.parse('{"nome": "Welinton"}'))

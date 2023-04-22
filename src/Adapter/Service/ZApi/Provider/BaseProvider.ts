@@ -1,6 +1,6 @@
-import { AxiosRequest, InvalidData, ProviderContract } from '../../../../../framework'
+import { AxiosRequest, InvalidDataException, RequestProviderContract } from '#framework'
 
-export class BaseProvider extends ProviderContract<AxiosRequest> {
+export class BaseProvider extends RequestProviderContract<AxiosRequest> {
   protected instance: string | undefined
   protected token: string | undefined
 
@@ -15,16 +15,22 @@ export class BaseProvider extends ProviderContract<AxiosRequest> {
     const instance = this.instance
     const token = this.token
 
-    if (!instance || !token) throw new InvalidData('Instance or token not set.')
+    if (!instance || !token) throw new InvalidDataException('Instance or token not set.')
   }
 
   protected getRequest(): AxiosRequest {
     this.hasInstanceAndToken()
 
-    return super.getRequest().withHeaders({
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-      'accept-encoding': null
-    })
+    return super
+      .getRequest()
+      .setHeaders({
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        'accept-encoding': 'null'
+      })
+      .addSegment('instances')
+      .addSegment(`${this.instance}`)
+      .addSegment('token')
+      .addSegment(`${this.token}`)
   }
 }

@@ -1,4 +1,4 @@
-import { Account, AccountService } from '../../../../Domain'
+import { Account, AccountService } from '#domain'
 import { IAccountUpdateConfigsPayloadDto } from './IAccountUpdateConfigsPayloadDto'
 
 export class AccountUpdateConfigsUseCase {
