@@ -40,7 +40,9 @@ export class TaskValidator extends JoiSchemaValidatorContract {
           })
         )
         .min(1)
-        .required()
+        .required(),
+      processItemInterval: Joi.number().min(Number(process.env.APP_TASK_PROCESS_MINIMUN_SECOND)),
+      saveCampaign: Joi.boolean()
     })
   }
 

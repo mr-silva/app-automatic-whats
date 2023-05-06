@@ -7,6 +7,7 @@ declare global {
       PORT: string
       APP_SECRET: string
       JWT_SECRET: string
+      APP_TASK_PROCESS_MINIMUN_SECOND: string
 
       // REDIS
       REDIS_HOST: string

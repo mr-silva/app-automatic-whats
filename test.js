@@ -1,3 +1,5 @@
+const randomize = require('randomatic')
+
 // ####### MESSAGE SEND WITH VARIABLES #######
 
 // const rawMessage =
@@ -42,54 +44,219 @@
 
 // ###### SET INTERVAL FUNCTION #######
 
-// const items = [
-//   {
-//     data: {
-//       nome: 'Maicon',
-//       numero: '5551984991442'
-//     },
-//     taskId: 1
-//   },
-//   {
-//     data: {
-//       nome: 'Vitoria',
-//       numero: '5551989377131'
-//     },
-//     taskId: 1
-//   },
-//   {
-//     data: {
-//       nome: 'Vitoria',
-//       numero: '5551989377131'
-//     },
-//     taskId: 1
-//   }
-// ]
+const items = [
+  {
+    data: {
+      nome: 'Maicon',
+      numero: '5551984991442'
+    },
+    taskId: 1
+  },
+  {
+    data: {
+      nome: 'Vitoria',
+      numero: '5551989377131'
+    },
+    taskId: 1
+  },
+  {
+    data: {
+      nome: 'Vitoria',
+      numero: '5551989377131'
+    },
+    taskId: 1
+  },
+  {
+    data: {
+      nome: 'Vitoria',
+      numero: '5551989377131'
+    },
+    taskId: 1
+  },
+  {
+    data: {
+      nome: 'Vitoria',
+      numero: '5551989377131'
+    },
+    taskId: 1
+  },
+  {
+    data: {
+      nome: 'Vitoria',
+      numero: '5551989377131'
+    },
+    taskId: 1
+  },
+  {
+    data: {
+      nome: 'Vitoria',
+      numero: '5551989377131'
+    },
+    taskId: 1
+  },
+  {
+    data: {
+      nome: 'Vitoria',
+      numero: '5551989377131'
+    },
+    taskId: 1
+  },
+  {
+    data: {
+      nome: 'Vitoria',
+      numero: '5551989377131'
+    },
+    taskId: 1
+  },
+  {
+    data: {
+      nome: 'Vitoria',
+      numero: '5551989377131'
+    },
+    taskId: 1
+  },
+  {
+    data: {
+      nome: 'Vitoria',
+      numero: '5551989377131'
+    },
+    taskId: 1
+  },
+  {
+    data: {
+      nome: 'Vitoria',
+      numero: '5551989377131'
+    },
+    taskId: 1
+  },
+  {
+    data: {
+      nome: 'Vitoria',
+      numero: '5551989377131'
+    },
+    taskId: 1
+  },
+  {
+    data: {
+      nome: 'Vitoria',
+      numero: '5551989377131'
+    },
+    taskId: 1
+  },
+  {
+    data: {
+      nome: 'Vitoria',
+      numero: '5551989377131'
+    },
+    taskId: 1
+  },
+  {
+    data: {
+      nome: 'Vitoria',
+      numero: '5551989377131'
+    },
+    taskId: 1
+  },
+  {
+    data: {
+      nome: 'Vitoria',
+      numero: '5551989377131'
+    },
+    taskId: 1
+  },
+  {
+    data: {
+      nome: 'Vitoria',
+      numero: '5551989377131'
+    },
+    taskId: 1
+  },
+  {
+    data: {
+      nome: 'Vitoria',
+      numero: '5551989377131'
+    },
+    taskId: 1
+  },
+  {
+    data: {
+      nome: 'Vitoria',
+      numero: '5551989377131'
+    },
+    taskId: 1
+  },
+  {
+    data: {
+      nome: 'Vitoria',
+      numero: '5551989377131'
+    },
+    taskId: 1
+  },
+  {
+    data: {
+      nome: 'Vitoria',
+      numero: '5551989377131'
+    },
+    taskId: 1
+  },
+  {
+    data: {
+      nome: 'Vitoria',
+      numero: '5551989377131'
+    },
+    taskId: 1
+  },
+  {
+    data: {
+      nome: 'Vitoria',
+      numero: '5551989377131'
+    },
+    taskId: 1
+  },
+  {
+    data: {
+      nome: 'Vitoria',
+      numero: '5551989377131'
+    },
+    taskId: 1
+  },
+  {
+    data: {
+      nome: 'Vitoria',
+      numero: '5551989377131'
+    },
+    taskId: 1
+  }
+]
 
-// const processItem = item => {
-//   console.log(item)
-// }
+const processItem = (item, interval) => {
+  console.log(item, `processed in ${interval / 1000} seconds.`)
+}
 
-// // setInterval(() => {
-// //   for (const item of items) {
-// //     processItem(item)
-// //   }
-// // }, 2000)
+const randomIntFromInterval = (min, max) => {
+  // min and max included
+  return Math.floor(Math.random() * (max - min + 1) + min)
+}
 
-// // for (const item of items) {
-// //   ;(function (item) {
-// //     setTimeout(() => processItem(item), 3000)
-// //   })(item)
-// // }
+let previousInterval = 0
+items.forEach((item, i) => {
+  const randonTime = randomIntFromInterval(10, 30)
 
-// items.forEach((item, i) => {
-//   const interval = 3000 * i + 1
+  console.log(randonTime)
 
-//   setTimeout(() => processItem(item), interval)
-// })
+  const interval = (randonTime + previousInterval) * 1000
+
+  previousInterval = interval / 1000
+
+  console.log(interval)
+
+  item['taskId'] = i + 1
+
+  setTimeout(() => processItem(item, interval), interval)
+})
 
 // ## STRING PARSE
-const rawData =
-  '{nome: Welinton, numero: 555192767016, email: welinton@gmail.com, valor: 30.23, data: 2022-10-19T00:06:28.000}'
+// const rawData =
+//   '{nome: Welinton, numero: 555192767016, email: welinton@gmail.com, valor: 30.23, data: 2022-10-19T00:06:28.000}'
 
-console.log(JSON.parse('{"nome": "Welinton"}'))
+// console.log(JSON.parse('{"nome": "Welinton"}'))

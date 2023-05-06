@@ -1,5 +1,5 @@
 export class TaskSettings {
-  constructor(private message: string, private processItemInterval: number = 2) {}
+  constructor(private message: string, private processItemInterval: number = 10) {}
 
   public getMessage(): string {
     return this.message
